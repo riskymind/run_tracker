@@ -8,4 +8,5 @@
         <item>Calories Burned</item>
     </string-array>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyA_UZfIq4rHlLm0NsOviYQUiuUTR4t1Phw</string>
+    <string name="miss_permission">This Application is Location base, please for the app to work proper accept all permissions</string>
 </resources>
