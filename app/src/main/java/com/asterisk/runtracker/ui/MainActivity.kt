@@ -1,5 +1,6 @@
 package com.asterisk.runtracker.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.isVisible
@@ -13,6 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.asterisk.runtracker.R
 import com.asterisk.runtracker.databinding.ActivityMainBinding
+import com.asterisk.runtracker.utils.Constants.ACTION_SHOW_TRACKING_FRAGMENT
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,7 +30,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        navigateToTrackingFragmentIfNeeded(intent)
+
         setSupportActionBar(binding.toolbar)
+
+
 
 
         val navHosFragment =
@@ -49,5 +56,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        navigateToTrackingFragmentIfNeeded(intent)
+    }
+
+    private fun navigateToTrackingFragmentIfNeeded(intent: Intent?) {
+        if (intent?.action == ACTION_SHOW_TRACKING_FRAGMENT) {
+            binding.navHostFragment.findNavController().navigate(R.id.action_global_tracking_fragment)
+        }
     }
 }
